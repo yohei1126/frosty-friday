@@ -1,3 +1,9 @@
+-- https://frostyfriday.org/2022/07/14/week-1/
+-- FrostyFriday Inc., your benevolent employer, has an S3 bucket that is filled with .csv data dumps.
+-- This data is needed for analysis. Your task is to create an external stage, and load the csv files
+-- directly from that stage into a table.
+--  The S3 bucket’s URI is: s3://frostyfridaychallenges/challenge_1/
+
 create database if not exists frosty_friday;
 create schema if not exists week1;
 create or replace stage week1_stage
