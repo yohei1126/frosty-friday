@@ -12,6 +12,7 @@
 -- update <table_name> set title = 'Ms' where employee_id = 32;
 -- update <table_name> set job_title = 'Senior Financial Analyst' where employee_id = 68;
 
+
 create database if not exists frosty_friday;
 create schema if not exists week2;
 create stage if not exists ff_stage
@@ -42,6 +43,17 @@ create or replace table week2_table(
   street_num number,
   time_zone varchar,
   title varchar);
+-- create a view that shows dept and job title
+create or replace view change_tracking
+as select
+    employee_id
+  , dept
+  , job_title
+from week2_table;
+-- create a view that only show dept and job title
+create or replace stream str_change_tracking
+on view change_tracking;
+select * from str_change_tracking;
 -- load data into the table
 -- source file is parquet format so it must be converted to structured table
 copy into week2_table
@@ -72,30 +84,17 @@ select * from week2_table;
 update week2_table
 set country = 'Japan'
 where employee_id = 8;
-select country
-from week2_table
-where employee_id = 8;
 update week2_table
 set last_name = 'Forester'
-where employee_id = 22;
-select last_name
-from week2_table
 where employee_id = 22;
 update week2_table
 set dept = 'Marketing'
 where employee_id = 25;
-select dept
-from week2_table
-where employee_id = 25;
 update week2_table
 set title = 'Ms'
-where employee_id = 32;
-select title
-from week2_table
 where employee_id = 32;
 update week2_table
 set job_title = 'Senior Financial Analyst'
 where employee_id = 68;
-select job_title
-from week2_table
-where employee_id = 68;
+-- check change
+select * from str_change_tracking;
