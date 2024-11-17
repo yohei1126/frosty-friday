@@ -5,6 +5,10 @@
 -- https://docs.snowflake.com/en/sql-reference/functions/min_by
 -- https://docs.snowflake.com/en/sql-reference/functions/max_by
 
+use role sysadmin;
+
+use warehouse xsmall;
+
 create or replace database frosty_friday;
 
 create schema week31;
@@ -25,6 +29,6 @@ insert into w31 values
   ;
 
 select
-  MIN_BY(id, villains_defeated) as best_super_hero_id,
-  MAX_BY(id, villains_defeated) as worst_super_hero_id
+  MAX_BY(id, villains_defeated) as best_super_hero_id,
+  MIN_BY(id, villains_defeated) as worst_super_hero_id
 from w31;
