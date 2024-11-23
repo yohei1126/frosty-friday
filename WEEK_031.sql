@@ -9,7 +9,7 @@ use role sysadmin;
 
 use warehouse xsmall;
 
-create or replace database frosty_friday;
+create database if not exists frosty_friday;
 
 create schema week31;
 
