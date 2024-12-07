@@ -29,6 +29,6 @@ insert into w31 values
   ;
 
 select
-  MAX_BY(id, villains_defeated) as best_super_hero_id,
-  MIN_BY(id, villains_defeated) as worst_super_hero_id
+  MAX_BY(hero_name, villains_defeated) as best_hero,
+  MIN_BY(hero_name, villains_defeated) as worst_hero
 from w31;
